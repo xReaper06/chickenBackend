@@ -31,6 +31,7 @@ const storage = multer.diskStorage({
   const adminController = require('../controllers/adminController')
   const userController = require('../controllers/userController')
   const riderController = require('../controllers/riderController')
+  const testController = require('../controllers/testController')
 
   //auth
   router.get('/getAllInformation',verifyToken,authController.getAllInformation);
@@ -75,7 +76,18 @@ const storage = multer.diskStorage({
   router.post('/addtoFavorites',verifyToken,userController.addtoFavorites)
   router.post('/removeFromFavorites',verifyToken,userController.removeFromFavorites)
 
+  //settings
+  router.post('/changeInfo',verifyToken,userController.changeInfo)
+  router.post('/changeAddress',verifyToken,userController.changeAddress)
+  router.post('/changePassword',verifyToken,userController.changePassword)
+  router.post('/changeProfilePic',upload.fields([{name:'image',maxCount:1}]),verifyToken,userController.changeProfilePic)
+
+
   //rider
   router.post('/deliverOrder',verifyToken,riderController.deliverOrder)
+
+  //test
+
+  router.get('/test',testController.TestQuery);
 
   module.exports = router;

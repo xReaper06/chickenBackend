@@ -11,9 +11,8 @@ const getUsersInfo = async(req,res)=>{
         const {id} = req.user;
         const [user_info] = await conn.query(`
                 SELECT 
-            users.id,
+            users.id,users.email,
             CONCAT_WS(' ', user_info.fname, user_info.mname, user_info.lname) AS fullname,
-            user_info.email,
             user_info.phone,
             CONCAT_WS(', ', user_add.sitio, user_add.baranggay, user_add.city, user_add.province) AS address,
             profile.image AS profile_picture

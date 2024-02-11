@@ -47,7 +47,7 @@ const userRegistration = async(req,res)=>{
       }
     }
   }
-
+  
   const login = async(req,res)=>{
     let conn;
     try {
